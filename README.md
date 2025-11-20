@@ -1,2 +1,2 @@
-# schmeetaz kavat
-# Hallo
+# Schmitussy Coding Playground
+# Python-Ordner
