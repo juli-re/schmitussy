@@ -16,3 +16,31 @@ person2 = {"name": "Reiser", "vorname": "Julian", "alter": 50}
 Index = [person, person2]
 for x in Index:
     print (x["vorname"])
+
+#21.11.2025
+
+a = 10
+b = 3
+
+print(a + b)  # 13
+print(a - b)  # 7
+print(a * b)  # 30
+print(a / b)  # 3.333..
+print(a // b) # 3 (Ganzzahldivision)
+print(a % b)  # 1 (Rest)
+print(a ** b) # 1000 (Potenz)
+
+print(a > b)   # True
+print(a == b)  # False
+
+print(a != b)  # True
+
+test = 20
+
+if test % 2 == 0:
+    print("Die Zahl ist gerade.")
+else:
+    print("Die Zahl ist ungerade.") 
+
+for i in range(5):
+    print("Freak des Tages: Julian Reiser ", i, " Test")
