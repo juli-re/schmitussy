@@ -44,3 +44,24 @@ else:
 
 for i in range(5):
     print("Freak des Tages: Julian Reiser ", i, " Test")
+
+count = 0
+while count < 5:
+    print("Count ist:", count)
+    count += 1
+
+def freak_des_tages(name):
+    print("Freak des Tages ist:", name)
+
+freak_des_tages(person["vorname"])
+
+def addiere(a, b):
+    result = a + b
+    if (result < 10):
+        print("Retard, lern Kopfrechnen")
+    else:
+        print(result)
+        return result
+    return 0
+
+addiere(0,110)
