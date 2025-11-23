@@ -64,4 +64,7 @@ def addiere(a, b):
         return result
     return 0
 
-addiere(0,110)
+summe = addiere(0,110)
+
+boi = input("Input hier:")
+print(boi)
