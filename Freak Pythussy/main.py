@@ -66,5 +66,15 @@ def addiere(a, b):
 
 summe = addiere(0,110)
 
-boi = input("Input hier:")
-print(boi)
+#boi = input("Input hier:")
+#print(boi)
+
+#23.11.2025
+
+with open("test.txt", "w") as file:
+    file.write("Freaky Mc Freakerson\nNate Higgers!")
+
+with open("test.txt", "r") as file:
+    content = file.read()
+    print(content)
+
