@@ -1,3 +1,5 @@
+import math
+
 #19.11.2025
 
 Test = [0, 1, 4, 3]
@@ -78,3 +80,4 @@ with open("test.txt", "r") as file:
     content = file.read()
     print(content)
 
+print(int(math.sqrt(4)))
