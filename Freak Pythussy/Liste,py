@@ -1,0 +1,115 @@
+def ListeSchreibenArray(Notiz):
+    try:
+        with open("Liste.txt", "r") as file:
+            content = file.read()
+    except FileNotFoundError:
+        content = ""
+
+    if content.strip() == "":
+        print("Die Liste ist leer.")
+        index = 1
+    else:
+        print("Bisher steht das in der Datei:", content)
+        index = content.count("\n") + 1
+
+    # Neuen Eintrag erstellen
+    neuer_eintrag = f"{index}. {Notiz}\n"
+
+    # Am Ende der Datei anhängen
+    with open("Liste.txt", "a") as file:
+        file.write(neuer_eintrag)
+
+    # Ausgabe nach dem Schreiben
+    with open("Liste.txt", "r") as file:
+        content = file.read()
+        print("Jetzt steht das in der Datei:", content)
+
+def EintragLoeschen(suche):
+    # Datei einlesen
+    try:
+        with open("Liste.txt", "r") as file:
+            lines = file.readlines()
+    except FileNotFoundError:
+        print("Die Datei existiert noch nicht.")
+        return
+
+    if not lines:
+        print("Die Liste ist leer, nichts zu löschen.")
+        return
+
+    # Prüfen, ob Numerischer Eintrag gesucht wird
+    geloescht = False
+    neue_liste = []
+
+    # Wenn Zahl → Eintrag per Nummer löschen
+    if isinstance(suche, int) or (isinstance(suche, str) and suche.isdigit()):
+        nummer = int(suche)
+
+        for line in lines:
+            # Zeilenformat: "1. Text"
+            try:
+                aktuelle_nummer = int(line.split(".")[0])
+            except ValueError:
+                continue  # Falls etwas im falschen Format steht
+
+            if aktuelle_nummer == nummer:
+                geloescht = True
+                # diesen Eintrag NICHT übernehmen → gelöscht
+            else:
+                neue_liste.append(line)
+
+    else:
+        # Löschmodus per Text
+        for line in lines:
+            if suche.lower() in line.lower():
+                geloescht = True
+                # Dieser Eintrag wird nicht behalten
+            else:
+                neue_liste.append(line)
+
+    if not geloescht:
+        print("Kein Eintrag gefunden, der gelöscht werden kann.")
+        return
+
+    # Liste neu nummerieren
+    endgueltige_liste = []
+    nummer = 1
+    for line in neue_liste:
+        # Entfernt alte Nummer und setzt neue
+        teile = line.split(". ", 1)
+        if len(teile) == 2:
+            text = teile[1].strip()
+        else:
+            text = line.strip()
+
+        endgueltige_liste.append(f"{nummer}. {text}\n")
+        nummer += 1
+
+    # Neue Datei schreiben
+    with open("Liste.txt", "w") as file:
+        file.writelines(endgueltige_liste)
+
+    print("Eintrag erfolgreich gelöscht.")
+
+
+modus = input("Willkommen zur Liste! Was soll gemacht werden? (Lesen/Schreiben/Löschen) ").lower()
+if(modus == "lesen"):
+    with open("Liste.txt", "r") as file:
+        content = file.read()
+        if(content == ""):
+            empty = True
+            print("Die Liste ist leer.")
+        else: 
+            print("Bisher steht das in der Datei: ", content)
+elif(modus == "schreiben"):
+    ListeSchreibenArray(input("Was soll geschrieben werden? "))
+elif(modus == "löschen"):
+    modus2 = input("Ganz bestimmten Eintrag löschen (Nummer/Text) oder ganze Liste leeren? (Liste) ").lower()
+    if(modus2 == "nummer" or modus2 == "text"):
+        EintragLoeschen(input("Geben Sie die Nummer oder den Text des zu löschenden Eintrags ein: "))
+    elif(modus2 == "liste"):    
+        with open("Liste.txt", "w") as file:
+            file.write("")
+        print("Die Datei wurde geleert.")
+else:
+    print("Ungültiger Modus ausgewählt.")
