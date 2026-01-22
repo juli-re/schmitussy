@@ -1,7 +1,10 @@
 import numpy as np
 
-a = np.array([1, 2, 3])
+a = np.array([1, 7, 5, 8, 9])
 print(a)
+
+for i in range(len(a)):
+    print(i, a[i-1])
 
 b = np.array([[1, 2, 3], [4, 5, 6]])
 print(b)
